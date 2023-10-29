@@ -2,7 +2,7 @@ package br.com.alura.alugames.main
 
 import br.com.alura.alugames.models.Gamer
 import br.com.alura.alugames.models.Jogo
-import br.com.alura.alugames.services.consumoApi
+import br.com.alura.alugames.services.ConsumoApi
 import tranformarEmIdade
 import java.util.*
 
@@ -17,7 +17,7 @@ fun main() {
         println("Digite um código de jogo para buscar:")
         val busca = leitura.nextLine()
 
-        val buscaApi = consumoApi()
+        val buscaApi = ConsumoApi()
         val informacaoJogo = buscaApi.buscaJogo(busca)
 
         var meuJogo: Jogo? = null
