@@ -3,7 +3,7 @@ package br.com.alura.alugames.models
 import java.util.*
 import kotlin.random.Random
 
-data class Gamer(var name:String, var email:String) {
+data class Gamer(var name:String, var email:String): Recomendavel {
     var dateBirth: String? = null
     var user: String? = null
         set(value) {
@@ -17,6 +17,20 @@ data class Gamer(var name:String, var email:String) {
     var plano: Plano = PlanoAvulso ("BRONZE")
     val jogosBuscados = mutableListOf<Jogo?>()
     val jogosAlugados = mutableListOf<Rent>()
+    private val listaNotas = mutableListOf<Int>()
+    val jogosRecomendados = mutableListOf<Jogo>()
+
+    override val media: Double
+        get() = listaNotas.average()
+
+    override fun recomendar(nota: Int) {
+        listaNotas.add(nota)
+    }
+
+    fun recomendarJogo(jogo: Jogo, nota: Int) {
+        jogo.recomendar(nota)
+        jogosRecomendados.add(jogo)
+    }
 
     constructor(name: String, email: String, dateBirth: String, user: String) :
             this(name, email) {
@@ -32,7 +46,13 @@ data class Gamer(var name:String, var email:String) {
     }
 
     override fun toString(): String {
-        return "Gamer(name='$name', email='$email', dateBirth=$dateBirth, user=$user, userId=$userId)"
+        return "Gamer:\n" +
+                "name=$name\n " +
+                "email=$email\n " +
+                "dateBirth=$dateBirth\n " +
+                "user=$user\n " +
+                "userId=$userId\n" +
+                "Reputação: ${String.format("%.2f",media)}"
     }
 
     fun createUserId() {
