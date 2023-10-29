@@ -1,0 +1,25 @@
+****primeira tratativa de erro com try/catch***
+
+ val gson = Gson()
+ val meuInfoJogo = try { gson.fromJson(json, br.com.alura.alugames.models.InfoJogo::class.java)
+    } catch (ex: JsonSyntaxException) {
+       null
+    }
+   if (meuInfoJogo != null) {
+       try {
+            val meuJogo = br.com.alura.alugames.models.Jogo(
+                meuInfoJogo.info.title,
+                meuInfoJogo.info.thumb
+           )
+         println(meuJogo)
+      } catch (ex: NullPointerException) {
+           println("Erro ao processar dados do jogo.")
+      }
+   } else {
+       println("br.com.alura.alugames.models.Jogo inexistente! Tente outro código.")
+   }
+
+OBS: a trativa da aula deu erro no meu console, foi necessária mudanças.
+
+
+=> AVERIGUAR DEPOIS:esse pedido de descrição após sucesso não faz sentido?!
