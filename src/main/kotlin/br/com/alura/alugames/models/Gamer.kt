@@ -4,7 +4,7 @@ import java.lang.IllegalArgumentException
 import java.util.Scanner
 import kotlin.random.Random
 
-data class Gamer(var name: String, var email: String) {
+data class Gamer(var name:String, var email:String) {
     var dateBirth: String? = null
     var user: String? = null
         set(value) {
@@ -24,7 +24,7 @@ data class Gamer(var name: String, var email: String) {
                 createUserId()
     }
     init {
-        if(name.isBlank()){
+        if(name.isNullOrBlank()){
             throw IllegalArgumentException("Nome está em branco.")
         }
         this.email = emailValidate()

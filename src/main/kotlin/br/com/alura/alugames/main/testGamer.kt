@@ -8,7 +8,7 @@ fun main() {
     val gamer2 = Gamer(
         "Idzy",
         "idzyemily@gmail.com",
-        "26/06/2002",
+        "26/05/2002",
         "idzyemily")
 
     println(gamer2)
@@ -19,6 +19,10 @@ fun main() {
     }.also {
         println(gamer1)
     }
+
+    println(gamer1)
+    gamer1.user= "djefani"
+    println(gamer1)
 
 
 

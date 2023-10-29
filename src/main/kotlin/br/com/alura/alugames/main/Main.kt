@@ -10,7 +10,7 @@ fun main() {
     val leitura = Scanner(System.`in`)
     val gamer = Gamer.createGamer(leitura)
     println("Cadastro concluído com sucesso. Dados do Gamer:")
-    println(Gamer)
+    println(gamer)
     println("Idade do Gamer: "+ gamer.dateBirth?.tranformarEmIdade())
 
     do {
