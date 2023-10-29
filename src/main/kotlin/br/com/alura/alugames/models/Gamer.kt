@@ -1,7 +1,6 @@
 package br.com.alura.alugames.models
 
-import java.lang.IllegalArgumentException
-import java.util.Scanner
+import java.util.*
 import kotlin.random.Random
 
 data class Gamer(var name:String, var email:String) {
@@ -15,7 +14,9 @@ data class Gamer(var name:String, var email:String) {
         }
     var userId: String? = null
         private set
+    var plano: Plano = PlanoAvulso ("BRONZE")
     val jogosBuscados = mutableListOf<Jogo?>()
+    val jogosAlugados = mutableListOf<Rent>()
 
     constructor(name: String, email: String, dateBirth: String, user: String) :
             this(name, email) {
@@ -51,8 +52,17 @@ data class Gamer(var name:String, var email:String) {
 
     }
 
-    fun rentGame(jogo: Jogo): Rent {
-        return Rent(this, jogo)
+    fun rentGame(jogo: Jogo, period: Period): Rent {
+        val rent = Rent(this, jogo, period)
+        jogosAlugados.add(rent)
+
+        return rent
+    }
+
+    fun jogosDoMes(mes:Int): List<Jogo> {
+        return jogosAlugados
+            .filter { aluguel ->  aluguel.period.dataInicial.monthValue == mes}
+            .map { aluguel ->  aluguel.jogo}
     }
 
     companion object{
